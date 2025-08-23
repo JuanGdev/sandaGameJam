@@ -9,8 +9,8 @@ include_directories(/home/juangdev/raylib/src)
 include_directories(${CMAKE_SOURCE_DIR}/headerFiles /home/juangdev/raylib/src)
 link_directories(/home/juangdev/raylib/build)
 
-add_executable(sandaGJ main.cpp ./src/gameCore.cpp)
-
+set(CMAKE_BUILD_TYPE Debug)
+add_executable(sandaGJ main.cpp ./src/gameCore.cpp ./src/celullarAutomata.cpp)
 target_link_libraries(sandaGJ raylib)
 
 
