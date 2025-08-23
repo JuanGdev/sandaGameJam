@@ -6,9 +6,10 @@ set(CMAKE_CXX_STANDARD 17)
 
 
 include_directories(/home/juangdev/raylib/src)
+include_directories(${CMAKE_SOURCE_DIR}/headerFiles /home/juangdev/raylib/src)
 link_directories(/home/juangdev/raylib/build)
 
-add_executable(sandaGJ main.cpp gameCore.cpp)
+add_executable(sandaGJ main.cpp ./src/gameCore.cpp)
 
 target_link_libraries(sandaGJ raylib)
 
