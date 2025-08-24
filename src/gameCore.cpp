@@ -1,8 +1,7 @@
 #include "gameCore.hpp"
-#include "cellularAutomata.hpp"
-#include "raylib.h"
 
-gameCore::gameCore(std::string gameName, int widthResolution, int heightResolution, int FPS){
+gameCore::gameCore(std::string gameName, int widthResolution, int heightResolution, int FPS)
+{
     m_gameName = gameName;
     m_width = widthResolution;
     m_height = heightResolution;
@@ -10,17 +9,39 @@ gameCore::gameCore(std::string gameName, int widthResolution, int heightResoluti
 }
 
 
-void gameCore::StartGame()
+void gameCore::StartGame(cellularAutomata& cellObject)
 {
-    cellularAutomata test(50);
-    int size = test.m_grid.size();
     InitWindow(m_width, m_height, m_gameName.c_str()); 
+
+    //  Update method for the game
     while(!WindowShouldClose())
     {
         BeginDrawing();
-        ClearBackground(BLACK);
-        DrawText("HOLA MIAMOR T AMO", 500,500,50,RAYWHITE);
+        ClearBackground(BLACK); //  Basic background color
+        DebugDrawGridLines(cellObject);
         EndDrawing();
     }
     CloseWindow();
+}
+
+void gameCore::DebugDrawGridLines(cellularAutomata& cellObject)
+{
+    Vector2 verticalLineStart{0.f,0.f};
+    Vector2 verticalLineEnd{0.f, static_cast<float>(m_width)};
+    Vector2 horizontalLineStart{0.f,0.f};
+    Vector2 horizontalLineEnd{static_cast<float>(m_width),0.f};
+
+    //take the original screen size and divide it by grid size (cells)
+    int cellsStepDivision = m_width/cellObject.m_gridSize;
+    for(int i = 0; i <= cellObject.m_gridSize; i+=1)
+    {
+        //  Horizontal line
+        DrawLineEx(horizontalLineStart, horizontalLineEnd, m_DebugLinesThick, YELLOW);
+        horizontalLineStart.y += cellsStepDivision;
+        horizontalLineEnd.y += cellsStepDivision;
+        //  Vertical line
+        DrawLineEx(verticalLineStart,verticalLineEnd,m_DebugLinesThick, YELLOW);
+        verticalLineStart.x += cellsStepDivision;
+        verticalLineEnd.x += cellsStepDivision;
+    }
 }
