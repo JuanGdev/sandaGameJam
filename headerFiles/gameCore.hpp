@@ -12,12 +12,14 @@ class gameCore{
     std::string m_gameName = "";
     int m_width = 1080;
     int m_height = 1080;
-    int m_FPS;
+    int m_FPS = 60;
 
     float m_DebugLinesThick = 5.f;
     Color m_DebugLinesColor = YELLOW;
 
     private:
+    void DrawCells(cellularAutomata& cellObject);
+
     void DebugDrawGridLines(cellularAutomata & cellObject);
 
 };
