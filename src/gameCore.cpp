@@ -36,11 +36,11 @@ void gameCore::DebugDrawGridLines(cellularAutomata& cellObject)
     for(int i = 0; i <= cellObject.m_gridSize; i+=1)
     {
         //  Horizontal line
-        DrawLineEx(horizontalLineStart, horizontalLineEnd, m_DebugLinesThick, YELLOW);
+        DrawLineEx(horizontalLineStart, horizontalLineEnd, m_DebugLinesThick, m_DebugLinesColor);
         horizontalLineStart.y += cellsStepDivision;
         horizontalLineEnd.y += cellsStepDivision;
         //  Vertical line
-        DrawLineEx(verticalLineStart,verticalLineEnd,m_DebugLinesThick, YELLOW);
+        DrawLineEx(verticalLineStart,verticalLineEnd,m_DebugLinesThick, m_DebugLinesColor);
         verticalLineStart.x += cellsStepDivision;
         verticalLineEnd.x += cellsStepDivision;
     }

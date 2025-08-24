@@ -13,7 +13,9 @@ class gameCore{
     int m_width = 1080;
     int m_height = 1080;
     int m_FPS;
+
     float m_DebugLinesThick = 5.f;
+    Color m_DebugLinesColor = YELLOW;
 
     private:
     void DebugDrawGridLines(cellularAutomata & cellObject);
