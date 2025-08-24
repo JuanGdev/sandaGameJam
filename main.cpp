@@ -5,5 +5,6 @@ int main(void){
     cellularAutomata myCellObject(3);
     myCellObject.m_grid[1][1] = 1;
     myGame.StartGame(myCellObject);
+
     return 0;
 }
