@@ -19,6 +19,8 @@ void gameCore::StartGame(cellularAutomata& cellObject)
         ClearBackground(BLACK); //  Basic background color
         DebugDrawGridLines(cellObject);
         DrawCells(cellObject);
+        cellObject.ApplyRules();
+        DrawCells(cellObject);
         EndDrawing();
     }
     CloseWindow();

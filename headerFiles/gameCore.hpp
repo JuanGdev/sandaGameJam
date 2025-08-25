@@ -20,7 +20,9 @@ class gameCore{
     private:
     void DrawCells(cellularAutomata& cellObject);
 
-    void DebugDrawGridLines(cellularAutomata & cellObject);
+    void DebugDrawGridLines(cellularAutomata& cellObject);
+
+    void ApplyRules(cellularAutomata& cellObject);
 
 };
 
