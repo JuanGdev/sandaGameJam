@@ -15,7 +15,7 @@ class gameCore{
     int m_FPS = 60;
 
     float m_DebugLinesThick = 5.f;
-    Color m_DebugLinesColor = YELLOW;
+    Color m_DebugLinesColor = RAYWHITE;
 
     private:
     void DrawCells(cellularAutomata& cellObject);
