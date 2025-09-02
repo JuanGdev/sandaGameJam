@@ -11,16 +11,35 @@ gameCore::gameCore(std::string gameName, int widthResolution, int heightResoluti
 void gameCore::StartGame(cellularAutomata& cellObject)
 {
     InitWindow(m_width, m_height, m_gameName.c_str()); 
+    Vector2 mousePosition = {0.f,0.f};
 
     //  Update method for the game
     while(!WindowShouldClose())
     {
+
+        if (IsKeyPressed(KEY_H))
+        {
+            if (IsCursorHidden())
+            {
+                ShowCursor();
+            }
+            else
+            {
+                HideCursor();
+            }
+        }
+
         BeginDrawing();
         ClearBackground(BLACK); //  Basic background color
-        DebugDrawGridLines(cellObject);
+//        DebugDrawGridLines(cellObject);
         DrawCells(cellObject);
         cellObject.ApplyRules();
         DrawCells(cellObject);
+
+        //  mouse ball
+        mousePosition = GetMousePosition();
+        DrawCircleGradient(mousePosition.x, mousePosition.y, 10.f, RED, RAYWHITE);
+        DrawFPS(10,10);
         EndDrawing();
     }
     CloseWindow();
