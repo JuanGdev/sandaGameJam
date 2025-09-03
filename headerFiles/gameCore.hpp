@@ -13,6 +13,8 @@ class gameCore{
     int m_width = 1080;
     int m_height = 1080;
     int m_FPS = 60;
+    
+    Vector2 cellsUpdated{0.f,0.f};
 
     float m_DebugLinesThick = 5.f;
     Color m_DebugLinesColor = RAYWHITE;
@@ -21,9 +23,9 @@ class gameCore{
     void DrawCells(cellularAutomata& cellObject);
 
     void DebugDrawGridLines(cellularAutomata& cellObject);
-
-    void ApplyRules(cellularAutomata& cellObject);
-
+    Vector2 MouseClick(cellularAutomata& cellObject);
+    void ModifyCell(cellularAutomata& cellObject);
+    void DrawCell(const int ren, const int col);
 };
 
 #endif

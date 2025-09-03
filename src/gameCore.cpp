@@ -1,4 +1,5 @@
 #include "gameCore.hpp"
+#include <iostream>
 
 gameCore::gameCore(std::string gameName, int widthResolution, int heightResolution, int FPS)
 {
@@ -28,11 +29,17 @@ void gameCore::StartGame(cellularAutomata& cellObject)
                 HideCursor();
             }
         }
-
+        if(IsMouseButtonDown(MOUSE_LEFT_BUTTON))
+        {
+            cellsUpdated = MouseClick(cellObject);
+            if(cellsUpdated.x != 0)
+            {
+                cellObject.m_grid[cellsUpdated.y][cellsUpdated.x] = !cellObject.m_grid[cellsUpdated.y][cellsUpdated.x];
+            }
+            std::cout << MouseClick(cellObject).x << MouseClick(cellObject).y << std::endl;
+        }
         BeginDrawing();
         ClearBackground(BLACK); //  Basic background color
-//        DebugDrawGridLines(cellObject);
-        DrawCells(cellObject);
         cellObject.ApplyRules();
         DrawCells(cellObject);
 
@@ -84,3 +91,19 @@ void gameCore::DrawCells(cellularAutomata& cellObject)
         }
     }
 }
+
+Vector2 gameCore::MouseClick(cellularAutomata& cellObject)
+{
+    int cellSize = m_height/cellObject.m_gridSize;
+
+    Vector2 mousePos = GetMousePosition();
+    Vector2 renCols{0.f,0.f};
+    if(mousePos.y <= cellSize)
+    {
+        renCols.x = static_cast<int>(mousePos.x/cellObject.m_gridSize);
+        renCols.y = static_cast<int>(mousePos.y/cellObject.m_gridSize);
+    }
+    return renCols;
+}
+    void ModifyCell(cellularAutomata& cellObject);
+    void DrawCell(const int ren, const int col);
